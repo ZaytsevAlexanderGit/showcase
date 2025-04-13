@@ -27,24 +27,23 @@ import {
 import { useNavigate } from 'react-router';
 import styles from './styles.module.css';
 
-interface IProductCardSmall {
+interface IProductCard {
   product: TProductData;
 }
 
-export function ProductCardSmall({ product }: IProductCardSmall) {
+export function ProductCardPreview({ product }: IProductCard) {
   const dispatch = useDispatch();
   const productsFavorite = useSelector(getFavoriteProducts);
 
-  const [parentOpen, setParentOpen] = useState(false);
-  const [deleteOpen, setDeleteOpen] = useState(false);
-  const [likeOpen, setLikeOpen] = useState(false);
+  const [cardHover, setCardHover] = useState(false);
+  const [iconHover, setIconHover] = useState(false);
 
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const navigate = useNavigate();
 
   return (
     <Tooltip
-      open={!likeOpen && !deleteOpen && parentOpen}
+      open={!iconHover && cardHover}
       disableHoverListener
       title="Show Details"
       onClick={() => navigate(`/products/${product.id}`)}
@@ -52,14 +51,14 @@ export function ProductCardSmall({ product }: IProductCardSmall) {
     >
       <Card
         className={styles.nonDrag}
-        onMouseEnter={() => setParentOpen(true)}
-        onMouseLeave={() => setParentOpen(false)}
+        onMouseEnter={() => setCardHover(true)}
+        onMouseLeave={() => setCardHover(false)}
         style={{
           position: 'relative',
           borderRadius: '20px',
         }}
         sx={{
-          backgroundColor: prefersDarkMode ? 'white' : 'grey',
+          backgroundColor: prefersDarkMode ? 'white' : 'rgba(19,42,97,0.8)',
           cursor: 'pointer',
           boxShadow: '2px 2px 2px black',
           ':hover': {
@@ -74,12 +73,12 @@ export function ProductCardSmall({ product }: IProductCardSmall) {
           component="img"
           loading="lazy"
           sx={{
-            height: {
+            blockSize: {
               // xs: '45vw',
               // md: '32vw',
               // lg: '300px',
               xs: '45vw',
-              md: '24vw',
+              sm: '24vw',
               lg: '240px',
             },
             objectFit: 'cover',
@@ -89,7 +88,7 @@ export function ProductCardSmall({ product }: IProductCardSmall) {
         />
         <CardContent
           sx={{
-            color: 'black',
+            color: prefersDarkMode ? 'black' : 'white',
             padding: 0.5,
           }}
         >
@@ -108,14 +107,15 @@ export function ProductCardSmall({ product }: IProductCardSmall) {
           <IconButton
             sx={{
               ...LikeIconButtonEffects,
+
               path: {
                 fill: productsFavorite.includes(product.id)
                   ? `rgba(255,0,0,0.6)`
                   : '',
               },
             }}
-            onMouseEnter={() => setLikeOpen(true)}
-            onMouseLeave={() => setLikeOpen(false)}
+            onMouseEnter={() => setIconHover(true)}
+            onMouseLeave={() => setIconHover(false)}
             disableRipple={true}
             onClick={(event) => {
               event.stopPropagation();
@@ -126,8 +126,8 @@ export function ProductCardSmall({ product }: IProductCardSmall) {
             <LikeIcon color={'blackOpacity'} size={'24'} />
           </IconButton>
           <IconButton
-            onMouseEnter={() => setDeleteOpen(true)}
-            onMouseLeave={() => setDeleteOpen(false)}
+            onMouseEnter={() => setIconHover(true)}
+            onMouseLeave={() => setIconHover(false)}
             sx={DeleteIconButtonEffects}
             disableRipple={true}
             onClick={(event) => {

@@ -1,8 +1,8 @@
 .wrapper {
     max-inline-size: 1280px;
     margin: 0 auto;
-    inline-size:  80vw;
+    inline-size:  90vw;
     display: block;
     position: relative;
-    min-block-size:  100dvh;
+    /*min-block-size:  100dvh;*/
 }

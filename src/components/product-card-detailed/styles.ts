@@ -16,6 +16,7 @@ export const ToolTipStyle = (offset: number) => {
 
 export const LikeIconButtonEffects = {
   position: 'absolute',
+
   top: '10px',
   left: '10px',
   ':hover': {
@@ -34,16 +35,16 @@ export const LikeIconButtonEffects = {
   filter: 'drop-shadow(2px 2px rgba(0,0,0,0.2))',
 };
 
-export const DeleteIconButtonEffects = {
+export const OptionsIconButtonEffects = {
   position: 'absolute',
   right: '10px',
   top: '10px',
-  ':hover': {
-    scale: '1.2',
-    '& path': {
-      fill: 'red',
-    },
-  },
+  // ':hover': {
+  //   scale: '1.2',
+  //   '& path': {
+  //     fill: 'red',
+  //   },
+  // },
   ':focus': {
     outline: 'none',
   },

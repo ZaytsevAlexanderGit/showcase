@@ -9,7 +9,7 @@ interface PageLayoutProps {
 export const PageLayout = ({ content }: PageLayoutProps) => {
   return (
     <>
-      <div className={styles.content}> {content} </div>
+      <div className={styles.content}>{content}</div>
     </>
   );
 };

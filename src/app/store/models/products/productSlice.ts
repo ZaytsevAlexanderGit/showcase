@@ -80,6 +80,7 @@ export const productsSlice = createSlice({
   selectors: {
     getIsProductsLoading: (state) => state.isProductsLoading,
     getProducts: (state) => state.products,
+    getProductByID: (state, id) => state.products.find((el) => el.id === id),
     getFavoriteProducts: (state) => state.favoriteProducts,
   },
   extraReducers: (builder) => {
@@ -121,8 +122,12 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { getIsProductsLoading, getProducts, getFavoriteProducts } =
-  productsSlice.selectors;
+export const {
+  getIsProductsLoading,
+  getProducts,
+  getFavoriteProducts,
+  getProductByID,
+} = productsSlice.selectors;
 export const {
   setProducts,
   setIsProductsLoading,

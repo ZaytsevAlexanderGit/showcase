@@ -1,8 +1,7 @@
 .header {
+    block-size: 40px;
     border-bottom: 1px solid red;
     position: relative;
-    marginBottom: 10px;
     display: flex;
     justify-content: space-between;
-
 }

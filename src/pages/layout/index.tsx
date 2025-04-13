@@ -9,8 +9,6 @@ import {
 } from '../../app/store/models/products/productSlice.ts';
 import { Header } from '../../components/header';
 
-// import styles from './styles.module.css';
-
 export function Index() {
   const dispatch = useDispatch();
 
@@ -21,8 +19,15 @@ export function Index() {
 
   return (
     <MainWrapper>
-      <main>
-        <Header />
+      <Header />
+      <main
+        style={{
+          position: 'relative',
+          blockSize: 'calc(100dvh - 60px)',
+          display: 'grid',
+          placeItems: 'center',
+        }}
+      >
         <PageLayout content={<Outlet />} />
       </main>
     </MainWrapper>

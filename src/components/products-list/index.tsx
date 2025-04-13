@@ -1,7 +1,7 @@
 import { useSelector } from '../../app/store';
 import { getProducts } from '../../app/store/models/products/productSlice.ts';
 import { Grid } from '@mui/material';
-import { ProductCardSmall } from '../product-card-small';
+import { ProductCardPreview } from '../index';
 // import styles from './styles.module.css';
 
 export function ProductsList() {
@@ -10,9 +10,8 @@ export function ProductsList() {
   return (
     <>
       {productsData.slice(0, 12).map((product, index) => (
-        // <Grid key={index} size={{ lg: 3, md: 4, xs: 6 }}>
-        <Grid key={index} size={{ lg: 2, md: 3, xs: 6 }}>
-          <ProductCardSmall product={product} />
+        <Grid key={index} size={{ lg: 2, sm: 3, xs: 6 }}>
+          <ProductCardPreview product={product} />
         </Grid>
       ))}
     </>
