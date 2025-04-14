@@ -46,7 +46,7 @@ export function ProductCardPreview({ product }: IProductCard) {
           borderRadius: '20px',
         }}
         sx={{
-          backgroundColor: prefersDarkMode ? 'white' : 'rgba(19,42,97,0.8)',
+          backgroundColor: prefersDarkMode ? 'white' : 'rgba(18,81,159,0.8)',
 
           inlineSize: {
             xs: '42vw',

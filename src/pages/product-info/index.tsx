@@ -11,7 +11,7 @@ export function ProductInfoPage() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const navigate = useNavigate();
-  const product = useSelector((state) => getProductByID(state, +id!));
+  const product = useSelector((state) => getProductByID(state, id));
 
   return product !== undefined ? (
     <>

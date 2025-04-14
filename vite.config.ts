@@ -13,5 +13,5 @@ export default defineConfig({
   },
   publicDir: 'src/app/assets/images',
   plugins: [react()],
-  // base: '/EcoAlpha',
+  base: '/showcase',
 });

@@ -100,7 +100,8 @@ export const productsSlice = createSlice({
   selectors: {
     getIsProductsLoading: (state) => state.isProductsLoading,
     getProducts: (state) => state.products,
-    getProductByID: (state, id) => state.products.find((el) => el.id === id),
+    getProductByID: (state, id) =>
+      state.products.find((el) => el.id.toString() === id),
     getFavoriteProducts: (state) => state.favoriteProducts,
     getFilterCategory: (state) => state.filter,
   },

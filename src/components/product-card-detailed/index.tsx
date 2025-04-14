@@ -57,7 +57,7 @@ export function ProductCardDetailed({ product }: IProductCard) {
             xs: '80%',
             sm: '100%',
           },
-          backgroundColor: prefersDarkMode ? 'white' : 'rgba(19,42,97,0.8)',
+          backgroundColor: prefersDarkMode ? 'white' : 'rgba(18,81,159,0.8)',
           boxShadow: '2px 2px 2px black',
         }}
         variant={'elevation'}
