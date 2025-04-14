@@ -3,7 +3,6 @@ import { getIsProductsLoading } from '../../app/store/models/products/productSli
 import { Box, CircularProgress, Grid } from '@mui/material';
 import { ProductCardPreview } from '../index';
 import { TProductData } from '../../shared/types/store.types.ts';
-// import styles from './styles.module.css';
 
 interface IProductList {
   dataForShow: TProductData[];
@@ -23,7 +22,11 @@ export function ProductsList({ dataForShow, curPage }: IProductList) {
             size={
               dataForShow.length >= 6
                 ? { lg: 2, sm: 3, xs: 6 }
-                : { sm: Math.floor(12 / dataForShow.length), xs: 6 }
+                : dataForShow.length >= 4
+                  ? { lg: 12 / dataForShow.length, sm: 3, xs: 6 }
+                  : dataForShow.length >= 3
+                    ? { sm: 12 / dataForShow.length, xs: 6 }
+                    : { xs: 6 }
             }
           >
             {isLoading ? (

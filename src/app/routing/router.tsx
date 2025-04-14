@@ -1,14 +1,15 @@
-import { createBrowserRouter, createHashRouter, Navigate } from 'react-router';
+// import { createBrowserRouter,  Navigate } from 'react-router';
+import { createHashRouter, Navigate } from 'react-router';
 
 import { Routes } from '../../shared/config/router';
 import {
   Index,
   ProductsPage,
-  //   ProductInfoPage,
-  //   ProductCreatePage,
   NotFoundPage,
   ProductInfoPage,
+  ProductCreatePage,
 } from '../../pages';
+import { initialFormData } from '../../shared/libs/constants.ts';
 
 export const router = createHashRouter(
   // export const router = createBrowserRouter(
@@ -20,13 +21,13 @@ export const router = createHashRouter(
         { index: true, element: <Navigate to={Routes.ALL_PRODUCTS} /> },
         { path: Routes.ALL_PRODUCTS, element: <ProductsPage /> },
         { path: Routes.PRODUCT_INFO, element: <ProductInfoPage /> },
-        { path: Routes.CREATE_PRODUCT, element: <h1>CREATE</h1> },
+        {
+          path: Routes.CREATE_PRODUCT,
+          element: <ProductCreatePage productInformation={initialFormData} />,
+        },
         { path: Routes.NOT_FOUND, element: <NotFoundPage /> },
       ],
     },
   ]
   // { basename: '/EcoAlpha' }
 );
-
-// { path: Routes.PRODUCT, element: <ProductInfoPage /> },
-// { path: Routes.CREATE_PRODUCT, element: <ProductCreatePage /> },

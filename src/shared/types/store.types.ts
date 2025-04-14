@@ -1,5 +1,5 @@
 export type TProductData = {
-  id: number;
+  id: number | string;
   title: string;
   slug: string;
   price: number;
@@ -11,6 +11,17 @@ export type TProductData = {
     slug: string;
   };
   images: string[];
+  creationAt: string;
+  updatedAt: string;
+};
+
+export type TProductEssential = {
+  id: number | string;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  images: string;
 };
 
 export type TFetchPaginationParameters = {
@@ -23,7 +34,7 @@ export type TFilterProductsCategory = 'all' | 'favorites' | 'category';
 export type TProductsInitialState = {
   isProductsLoading: boolean;
   products: TProductData[];
-  favoriteProducts: number[];
+  favoriteProducts: (number | string)[];
   filter: TFilterProductsCategory;
   error: string;
 };

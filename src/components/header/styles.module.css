@@ -2,7 +2,6 @@
     block-size: 40px;
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding-right: 0px;
-
 }

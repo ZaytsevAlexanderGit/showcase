@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from '../../app/store';
 import {
   getFilterCategory,
   getProducts,
-  // getProductsCategories,
   setFilterCategory,
 } from '../../app/store/models/products/productSlice.ts';
 
@@ -63,8 +62,8 @@ export function DialogFilter({ open, setOpen }: IDialogFilterActions) {
             margin: 0,
             color: prefersDarkMode ? 'white' : 'black',
           }}
-          labelId="filter-select-label"
-          id="filter-open-select"
+          labelId="filter"
+          id="filter"
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}

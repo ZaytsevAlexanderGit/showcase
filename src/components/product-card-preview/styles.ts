@@ -1,19 +1,3 @@
-export const ToolTipStyle = (offset: number) => {
-  return {
-    popper: {
-      disablePortal: true,
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [0, offset],
-          },
-        },
-      ],
-    },
-  };
-};
-
 export const LikeIconButtonEffects = {
   position: 'absolute',
   padding: 0,

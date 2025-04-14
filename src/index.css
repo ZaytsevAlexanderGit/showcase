@@ -16,6 +16,6 @@
 @media (prefers-color-scheme: light) {
   :root {
     color: black;
-    background-color: rgba(221, 212, 212, 0.54);
+    background-color: rgba(255, 255, 255, 0.65);
   }
 }

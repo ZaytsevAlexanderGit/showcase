@@ -5,7 +5,7 @@ import { useDispatch } from '../../app/store';
 import { useEffect } from 'react';
 import {
   getProductsFromServer,
-  getProductsPaginationFromServer,
+  // getProductsPaginationFromServer,
 } from '../../app/store/models/products/productSlice.ts';
 import { Header } from '../../components/header';
 

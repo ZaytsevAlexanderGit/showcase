@@ -1,3 +1,14 @@
+import { TProductEssential } from '../types/store.types.ts';
+
+export const initialFormData: TProductEssential = {
+  id: '',
+  title: '',
+  price: +'',
+  description: '',
+  category: 'Choose Product Category',
+  images: '',
+};
+
 export const fakeProductsData = [
   {
     id: 1,

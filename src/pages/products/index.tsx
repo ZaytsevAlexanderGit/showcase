@@ -45,7 +45,6 @@ export function ProductsPage() {
               color: prefersDarkMode ? 'white' : 'black',
             },
           }}
-          // size={{ lg: 'large', sm: 'medium', xs: 'small' }}
           size="medium"
           count={numPages}
           onChange={paginationHandleChange}

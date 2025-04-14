@@ -70,7 +70,7 @@ export const productsSlice = createSlice({
     setIsProductsLoading: (state, action: PayloadAction<boolean>) => {
       state.isProductsLoading = action.payload;
     },
-    addToFavorites: (state, action: PayloadAction<number>) => {
+    addToFavorites: (state, action: PayloadAction<number | string>) => {
       state.favoriteProducts = state.favoriteProducts.includes(action.payload)
         ? state.favoriteProducts.filter((el) => el !== action.payload)
         : [...state.favoriteProducts, action.payload];
@@ -81,9 +81,20 @@ export const productsSlice = createSlice({
     ) => {
       state.filter = action.payload;
     },
-
-    deleteProduct: (state, action: PayloadAction<number>) => {
+    deleteProduct: (state, action: PayloadAction<number | string>) => {
       state.products = state.products.filter((el) => el.id !== action.payload);
+      state.favoriteProducts = state.favoriteProducts.filter(
+        (el) => el !== action.payload
+      );
+    },
+    addProduct: (state, action: PayloadAction<TProductData>) => {
+      state.products = [action.payload, ...state.products];
+    },
+    editProduct: (state, action: PayloadAction<TProductData>) => {
+      state.products = state.products.map((el) => {
+        if (el.id !== action.payload.id) return el;
+        else return action.payload;
+      });
     },
   },
   selectors: {
@@ -137,7 +148,6 @@ export const {
   getProducts,
   getFavoriteProducts,
   getProductByID,
-  // getProductsCategories,
   getFilterCategory,
 } = productsSlice.selectors;
 export const {
@@ -146,4 +156,6 @@ export const {
   addToFavorites,
   deleteProduct,
   setFilterCategory,
+  addProduct,
+  editProduct,
 } = productsSlice.actions;
