@@ -85,7 +85,7 @@ export function ProductCardPreview({ product }: IProductCard) {
               blockSize: {
                 xs: '45vw',
                 sm: '24vw',
-                lg: '240px',
+                lg: '230px',
               },
               objectFit: 'cover',
             }}
@@ -100,12 +100,17 @@ export function ProductCardPreview({ product }: IProductCard) {
           >
             <Typography
               variant={'body1'}
-              sx={{ fontSize: '1.25rem' }}
+              // sx={{ fontSize: '1.25rem' }}
+              sx={{ fontSize: 'clamp(1rem,2vw,1.25rem)' }}
               noWrap={true}
             >
               {product.title}
             </Typography>
-            <Typography sx={{ fontSize: '1.25rem' }}>
+            <Typography
+              noWrap={true}
+              // sx={{ fontSize: '1.25rem' }}
+              sx={{ fontSize: 'clamp(1rem,2vw,1.25rem)' }}
+            >
               Price:{product.price} $
             </Typography>
           </CardContent>

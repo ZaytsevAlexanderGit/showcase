@@ -91,11 +91,6 @@ export const productsSlice = createSlice({
     getProducts: (state) => state.products,
     getProductByID: (state, id) => state.products.find((el) => el.id === id),
     getFavoriteProducts: (state) => state.favoriteProducts,
-    // getProductsCategories: (state) =>
-    //   state.products.reduce((acc, el) => {
-    //     if (!acc.includes(el.category.name)) acc.push(el.category.name);
-    //     return acc;
-    //   }, [] as string[]),
     getFilterCategory: (state) => state.filter,
   },
   extraReducers: (builder) => {

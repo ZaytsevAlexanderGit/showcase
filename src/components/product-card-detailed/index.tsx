@@ -102,6 +102,7 @@ export function ProductCardDetailed({ product }: IProductCard) {
         <IconButton
           sx={{
             ...LikeIconButtonEffects,
+
             path: {
               fill: productsFavorite.includes(product.id)
                 ? `rgba(255,0,0,0.6)`

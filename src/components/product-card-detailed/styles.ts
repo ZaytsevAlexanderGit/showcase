@@ -18,6 +18,7 @@ export const LikeIconButtonEffects = {
   position: 'absolute',
   top: '10px',
   left: '10px',
+  padding: 0,
   ':hover': {
     scale: '1.2',
   },
@@ -38,7 +39,7 @@ export const OptionsIconButtonEffects = {
   position: 'absolute',
   right: '10px',
   top: '10px',
-
+  padding: 0,
   ':focus': {
     outline: 'none',
   },

@@ -61,7 +61,7 @@ export function DialogFilter({ open, setOpen }: IDialogFilterActions) {
           sx={{
             padding: 0,
             margin: 0,
-            color: prefersDarkMode ? 'white' : 'black', //'rgba(19,42,97,0.8)',
+            color: prefersDarkMode ? 'white' : 'black',
           }}
           labelId="filter-select-label"
           id="filter-open-select"
