@@ -4,3 +4,5 @@ export { Header } from './header';
 export { ProductsList } from './products-list';
 export { ProductCardPreview } from './product-card-preview';
 export { ProductCardDetailed } from './product-card-detailed';
+export { DialogAlert } from './dialog-alert';
+export { DialogFilter } from './dialog-filter';

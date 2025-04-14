@@ -26,6 +26,7 @@ import {
 } from './styles.ts';
 import { useNavigate } from 'react-router';
 import styles from './styles.module.css';
+import { DialogAlert } from '../index.ts';
 
 interface IProductCard {
   product: TProductData;
@@ -37,109 +38,125 @@ export function ProductCardPreview({ product }: IProductCard) {
 
   const [cardHover, setCardHover] = useState(false);
   const [iconHover, setIconHover] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const navigate = useNavigate();
 
   return (
-    <Tooltip
-      open={!iconHover && cardHover}
-      disableHoverListener
-      title="Show Details"
-      onClick={() => navigate(`/products/${product.id}`)}
-      slotProps={ToolTipStyle(-45)}
-    >
-      <Card
-        className={styles.nonDrag}
-        onMouseEnter={() => setCardHover(true)}
-        onMouseLeave={() => setCardHover(false)}
-        style={{
-          position: 'relative',
-          borderRadius: '20px',
-        }}
-        sx={{
-          backgroundColor: prefersDarkMode ? 'white' : 'rgba(19,42,97,0.8)',
-          cursor: 'pointer',
-          boxShadow: '2px 2px 2px black',
-          ':hover': {
-            boxShadow: '6px 6px 6px black',
-          },
-          ':active': { boxShadow: '2px 2px 2px black' },
-        }}
-        variant={'elevation'}
+    <>
+      <Tooltip
+        open={!iconHover && cardHover}
+        disableHoverListener
+        title="Show Details"
+        onClick={() => navigate(`/products/${product.id}`)}
+        slotProps={ToolTipStyle(-45)}
       >
-        <CardMedia
+        <Card
           className={styles.nonDrag}
-          component="img"
-          loading="lazy"
-          sx={{
-            blockSize: {
-              // xs: '45vw',
-              // md: '32vw',
-              // lg: '300px',
-              xs: '45vw',
-              sm: '24vw',
-              lg: '240px',
-            },
-            objectFit: 'cover',
+          onMouseEnter={() => setCardHover(true)}
+          onMouseLeave={() => setCardHover(false)}
+          style={{
+            position: 'relative',
+            borderRadius: '20px',
           }}
-          image={product.images[0]}
-          alt={product.title}
-        />
-        <CardContent
           sx={{
-            color: prefersDarkMode ? 'black' : 'white',
-            padding: 0.5,
-          }}
-        >
-          <Typography
-            variant={'body1'}
-            sx={{ fontSize: '1.25rem' }}
-            noWrap={true}
-          >
-            {product.title}
-          </Typography>
-          <Typography sx={{ fontSize: '1.25rem' }}>
-            Price:{product.price} $
-          </Typography>
-        </CardContent>
-        <CardActions sx={{ padding: 0 }}>
-          <IconButton
-            sx={{
-              ...LikeIconButtonEffects,
+            backgroundColor: prefersDarkMode ? 'white' : 'rgba(19,42,97,0.8)',
 
-              path: {
-                fill: productsFavorite.includes(product.id)
-                  ? `rgba(255,0,0,0.6)`
-                  : '',
+            inlineSize: {
+              xs: '42vw',
+              sm: '22vw',
+              lg: 'clamp(140px,14vw,200px)',
+            },
+            cursor: 'pointer',
+            boxShadow: '2px 2px 2px black',
+            ':hover': {
+              boxShadow: '6px 6px 6px black',
+            },
+            ':active': { boxShadow: '2px 2px 2px black' },
+          }}
+          variant={'elevation'}
+        >
+          <CardMedia
+            className={styles.nonDrag}
+            component="img"
+            loading="lazy"
+            sx={{
+              blockSize: {
+                xs: '45vw',
+                sm: '24vw',
+                lg: '240px',
               },
+              objectFit: 'cover',
             }}
-            onMouseEnter={() => setIconHover(true)}
-            onMouseLeave={() => setIconHover(false)}
-            disableRipple={true}
-            onClick={(event) => {
-              event.stopPropagation();
-              dispatch(addToFavorites(product.id));
+            image={product.images[0]}
+            alt={product.title}
+          />
+          <CardContent
+            sx={{
+              color: prefersDarkMode ? 'black' : 'white',
+              padding: 0.5,
             }}
-            aria-label="add to favorites"
           >
-            <LikeIcon color={'blackOpacity'} size={'24'} />
-          </IconButton>
-          <IconButton
-            onMouseEnter={() => setIconHover(true)}
-            onMouseLeave={() => setIconHover(false)}
-            sx={DeleteIconButtonEffects}
-            disableRipple={true}
-            onClick={(event) => {
-              event.stopPropagation();
-              dispatch(deleteProduct(product.id));
-            }}
-            aria-label="delete product"
-          >
-            <DeleteIcon color={'black'} size={'24'} />
-          </IconButton>
-        </CardActions>
-      </Card>
-    </Tooltip>
+            <Typography
+              variant={'body1'}
+              sx={{ fontSize: '1.25rem' }}
+              noWrap={true}
+            >
+              {product.title}
+            </Typography>
+            <Typography sx={{ fontSize: '1.25rem' }}>
+              Price:{product.price} $
+            </Typography>
+          </CardContent>
+          <CardActions sx={{ padding: 0 }}>
+            <IconButton
+              sx={{
+                ...LikeIconButtonEffects,
+
+                path: {
+                  fill: productsFavorite.includes(product.id)
+                    ? `rgba(255,0,0,0.6)`
+                    : '',
+                },
+              }}
+              onMouseEnter={() => setIconHover(true)}
+              onMouseLeave={() => setIconHover(false)}
+              disableRipple={true}
+              onClick={(event) => {
+                event.stopPropagation();
+                dispatch(addToFavorites(product.id));
+              }}
+              aria-label="add to favorites"
+            >
+              <LikeIcon color={'blackOpacity'} size={'24'} />
+            </IconButton>
+            <IconButton
+              onMouseEnter={() => setIconHover(true)}
+              onMouseLeave={() => setIconHover(false)}
+              sx={DeleteIconButtonEffects}
+              disableRipple={true}
+              onClick={(event) => {
+                event.stopPropagation();
+                setCardHover(false);
+                setDeleteDialogOpen(true);
+              }}
+              aria-label="delete product"
+            >
+              <DeleteIcon color={'black'} size={'24'} />
+            </IconButton>
+          </CardActions>
+        </Card>
+      </Tooltip>
+      <DialogAlert
+        open={deleteDialogOpen}
+        setOpen={setDeleteDialogOpen}
+        handleClickYes={(event) => {
+          event.stopPropagation();
+          dispatch(deleteProduct(product.id));
+          setDeleteDialogOpen(false);
+        }}
+      />
+    </>
   );
 }

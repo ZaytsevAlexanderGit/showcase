@@ -18,9 +18,12 @@ export type TFetchPaginationParameters = {
   limit: number;
 };
 
+export type TFilterProductsCategory = 'all' | 'favorites' | 'category';
+
 export type TProductsInitialState = {
   isProductsLoading: boolean;
   products: TProductData[];
   favoriteProducts: number[];
+  filter: TFilterProductsCategory;
   error: string;
 };

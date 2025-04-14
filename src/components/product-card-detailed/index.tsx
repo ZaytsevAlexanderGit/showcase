@@ -17,11 +17,8 @@ import { LikeIcon, OptionsIcon } from '../../shared/ui/icons';
 import { TProductData } from '../../shared/types/store.types.ts';
 
 import styles from './styles.module.css';
-import {
-  LikeIconButtonEffects,
-  OptionsIconButtonEffects,
-  ToolTipStyle,
-} from './styles.ts';
+import { LikeIconButtonEffects, OptionsIconButtonEffects } from './styles.ts';
+import { useState } from 'react';
 
 interface IProductCard {
   product: TProductData;
@@ -32,6 +29,8 @@ export function ProductCardDetailed({ product }: IProductCard) {
   const productsFavorite = useSelector(getFavoriteProducts);
 
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  const [editOpen, setEditOpen] = useState(false);
 
   return (
     <Card
@@ -120,8 +119,12 @@ export function ProductCardDetailed({ product }: IProductCard) {
         </IconButton>
         <Tooltip
           title="Edit"
+          disableHoverListener={true}
+          open={editOpen}
+          onMouseEnter={() => setEditOpen(true)}
+          onMouseLeave={() => setEditOpen(false)}
           // onClick={() => navigate(`/products/${product.id}`)}
-          slotProps={ToolTipStyle(-25)}
+          onClick={() => console.log('edit')}
         >
           <IconButton
             sx={OptionsIconButtonEffects}

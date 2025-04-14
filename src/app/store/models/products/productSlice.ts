@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
+  TFilterProductsCategory,
   TProductData,
   TProductsInitialState,
 } from '../../../../shared/types/store.types.ts';
@@ -28,6 +29,7 @@ export const initialState: TProductsInitialState = {
   isProductsLoading: false,
   products: [],
   favoriteProducts: [],
+  filter: 'all',
   error: '',
 };
 
@@ -73,6 +75,13 @@ export const productsSlice = createSlice({
         ? state.favoriteProducts.filter((el) => el !== action.payload)
         : [...state.favoriteProducts, action.payload];
     },
+    setFilterCategory: (
+      state,
+      action: PayloadAction<TFilterProductsCategory>
+    ) => {
+      state.filter = action.payload;
+    },
+
     deleteProduct: (state, action: PayloadAction<number>) => {
       state.products = state.products.filter((el) => el.id !== action.payload);
     },
@@ -82,6 +91,12 @@ export const productsSlice = createSlice({
     getProducts: (state) => state.products,
     getProductByID: (state, id) => state.products.find((el) => el.id === id),
     getFavoriteProducts: (state) => state.favoriteProducts,
+    // getProductsCategories: (state) =>
+    //   state.products.reduce((acc, el) => {
+    //     if (!acc.includes(el.category.name)) acc.push(el.category.name);
+    //     return acc;
+    //   }, [] as string[]),
+    getFilterCategory: (state) => state.filter,
   },
   extraReducers: (builder) => {
     builder
@@ -127,10 +142,13 @@ export const {
   getProducts,
   getFavoriteProducts,
   getProductByID,
+  // getProductsCategories,
+  getFilterCategory,
 } = productsSlice.selectors;
 export const {
   setProducts,
   setIsProductsLoading,
   addToFavorites,
   deleteProduct,
+  setFilterCategory,
 } = productsSlice.actions;

@@ -1,7 +1,8 @@
 .header {
     block-size: 40px;
-    border-bottom: 1px solid red;
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    padding-right: 0px;
+
 }

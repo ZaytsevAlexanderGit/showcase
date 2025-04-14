@@ -1,9 +1,16 @@
 import { Typography } from '@mui/material';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import { Routes } from '../../shared/config/router.ts';
 
 export function NotFoundPage() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => navigate(Routes.ALL_PRODUCTS), 2000);
+  }, []);
+
   return (
-    <Typography variant="h1">
-      Страница не найдена или её никогда не было
-    </Typography>
+    <Typography variant="h3">There is no page with this address</Typography>
   );
 }

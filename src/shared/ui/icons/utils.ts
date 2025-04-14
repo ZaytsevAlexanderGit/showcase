@@ -3,7 +3,7 @@ type TIconColor = 'blue' | 'white' | 'black' | 'red' | 'blackOpacity';
 export const getColor = (color: TIconColor) => {
   switch (color) {
     case 'blue':
-      return '#2E3192';
+      return 'rgba(19,42,97,0.8)';
     case 'white':
       return '#ffffff';
     case 'black':
