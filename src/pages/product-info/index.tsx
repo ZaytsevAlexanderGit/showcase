@@ -1,4 +1,4 @@
-import { Navigate, useNavigate, useParams } from 'react-router';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router';
 import { useSelector } from '../../app/store';
 import { getProductByID } from '../../app/store/models/products/productSlice.ts';
 import { Grid, IconButton, useMediaQuery } from '@mui/material';
@@ -8,6 +8,7 @@ import { LeftArrowIcon } from '../../shared/ui/icons';
 
 export function ProductInfoPage() {
   const { id } = useParams();
+  const location = useLocation();
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const navigate = useNavigate();
@@ -26,7 +27,9 @@ export function ProductInfoPage() {
         disableRipple={true}
         onClick={(event) => {
           event.stopPropagation();
-          navigate(Routes.ALL_PRODUCTS);
+          navigate(Routes.ALL_PRODUCTS, {
+            state: { page: location.state ? location.state.page : 1 },
+          });
         }}
         aria-label="Back to Products"
       >

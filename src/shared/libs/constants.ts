@@ -5,7 +5,7 @@ export const initialFormData: TProductEssential = {
   title: '',
   price: +'',
   description: '',
-  category: 'Choose Product Category',
+  category: '',
   images: '',
 };
 

@@ -5,5 +5,6 @@ export { ProductsList } from './products-list';
 export { ProductCardPreview } from './product-card-preview';
 export { ProductCardDetailed } from './product-card-detailed';
 export { ProductForm } from './product-form';
+export { ProductFormHook } from './product-form-hook';
 export { DialogAlert } from './dialog-alert';
 export { DialogFilter } from './dialog-filter';

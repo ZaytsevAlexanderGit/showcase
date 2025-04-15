@@ -1,6 +1,6 @@
 import { TProductEssential } from '../../shared/types/store.types.ts';
 
-import { ProductForm } from '../../components';
+import { ProductFormHook } from '../../components';
 import { Routes } from '../../shared/config/router.ts';
 import { LeftArrowIcon } from '../../shared/ui/icons';
 import { IconButton, useMediaQuery } from '@mui/material';
@@ -36,7 +36,7 @@ export function ProductCreatePage({ productInformation }: IProductCreatePage) {
           size={'32'}
         />
       </IconButton>
-      <ProductForm productInformation={productInformation} />
+      <ProductFormHook productInformation={productInformation} />
     </>
   );
 }

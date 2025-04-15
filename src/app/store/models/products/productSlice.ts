@@ -30,6 +30,7 @@ export const initialState: TProductsInitialState = {
   products: [],
   favoriteProducts: [],
   filter: 'all',
+  filterSearch: '',
   error: '',
 };
 
@@ -81,6 +82,9 @@ export const productsSlice = createSlice({
     ) => {
       state.filter = action.payload;
     },
+    setFilterSearch: (state, action: PayloadAction<string>) => {
+      state.filterSearch = action.payload;
+    },
     deleteProduct: (state, action: PayloadAction<number | string>) => {
       state.products = state.products.filter((el) => el.id !== action.payload);
       state.favoriteProducts = state.favoriteProducts.filter(
@@ -104,6 +108,7 @@ export const productsSlice = createSlice({
       state.products.find((el) => el.id.toString() === id),
     getFavoriteProducts: (state) => state.favoriteProducts,
     getFilterCategory: (state) => state.filter,
+    getSearchFilter: (state) => state.filterSearch,
   },
   extraReducers: (builder) => {
     builder
@@ -150,10 +155,12 @@ export const {
   getFavoriteProducts,
   getProductByID,
   getFilterCategory,
+  getSearchFilter,
 } = productsSlice.selectors;
 export const {
   setProducts,
   setIsProductsLoading,
+  setFilterSearch,
   addToFavorites,
   deleteProduct,
   setFilterCategory,

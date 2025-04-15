@@ -1,7 +1,9 @@
 .header {
-    block-size: 40px;
+    block-size: 45px;
     position: relative;
-    display: flex;
-    justify-content: space-between;
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    display: grid;
+    grid-template-columns: 50px 1fr 200px;
     padding-right: 0px;
 }

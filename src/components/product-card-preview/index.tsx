@@ -25,9 +25,10 @@ import styles from './styles.module.css';
 
 interface IProductCard {
   product: TProductData;
+  curPage: number;
 }
 
-export function ProductCardPreview({ product }: IProductCard) {
+export function ProductCardPreview({ product, curPage }: IProductCard) {
   const dispatch = useDispatch();
   const productsFavorite = useSelector(getFavoriteProducts);
 
@@ -40,14 +41,15 @@ export function ProductCardPreview({ product }: IProductCard) {
     <>
       <Card
         className={styles.nonDrag}
-        onClick={() => navigate(`/products/${product.id}`)}
+        onClick={() =>
+          navigate(`/products/${product.id}`, { state: { page: curPage } })
+        }
         style={{
           position: 'relative',
           borderRadius: '20px',
         }}
         sx={{
           backgroundColor: prefersDarkMode ? 'white' : 'rgba(18,81,159,0.8)',
-
           inlineSize: {
             xs: '42vw',
             sm: '22vw',

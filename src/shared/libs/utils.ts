@@ -1,8 +1,9 @@
 import { TFilterProductsCategory, TProductData } from '../types/store.types.ts';
+import { useEffect, useState } from 'react';
 
 export const getFilteredProducts = (
   data: TProductData[],
-  favorites: number[],
+  favorites: (string | number)[],
   filter: TFilterProductsCategory
 ): TProductData[] => {
   switch (filter) {
@@ -22,4 +23,19 @@ export function onlyNumbers(s: string) {
     }
   }
   return true;
+}
+
+export function useDebounce(value: string, delay: number): string {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
 }

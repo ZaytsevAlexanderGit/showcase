@@ -36,5 +36,6 @@ export type TProductsInitialState = {
   products: TProductData[];
   favoriteProducts: (number | string)[];
   filter: TFilterProductsCategory;
+  filterSearch: string;
   error: string;
 };

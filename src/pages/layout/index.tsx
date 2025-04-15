@@ -23,7 +23,7 @@ export function Index() {
       <main
         style={{
           position: 'relative',
-          blockSize: 'calc(100dvh - 60px)',
+          blockSize: 'calc(100dvh - 70px)',
           display: 'grid',
           placeItems: 'center',
         }}

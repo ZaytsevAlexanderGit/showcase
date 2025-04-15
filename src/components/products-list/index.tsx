@@ -11,6 +11,8 @@ interface IProductList {
 
 export function ProductsList({ dataForShow, curPage }: IProductList) {
   const isLoading = useSelector(getIsProductsLoading);
+  const cardsOnPage =
+    Math.min(curPage * 12, dataForShow.length) - (curPage - 1) * 12;
 
   return (
     <>
@@ -20,12 +22,16 @@ export function ProductsList({ dataForShow, curPage }: IProductList) {
           <Grid
             key={index}
             size={
-              dataForShow.length >= 6
+              cardsOnPage >= 6
                 ? { lg: 2, sm: 3, xs: 6 }
-                : dataForShow.length >= 4
-                  ? { lg: 12 / dataForShow.length, sm: 3, xs: 6 }
-                  : dataForShow.length >= 3
-                    ? { sm: 12 / dataForShow.length, xs: 6 }
+                : cardsOnPage >= 4
+                  ? { lg: 12 / cardsOnPage, sm: 3, xs: 6 }
+                  : cardsOnPage >= 3
+                    ? {
+                        lg: Math.floor(12 / cardsOnPage),
+                        sm: 12 / cardsOnPage,
+                        xs: 6,
+                      }
                     : { xs: 6 }
             }
           >
@@ -34,7 +40,7 @@ export function ProductsList({ dataForShow, curPage }: IProductList) {
                 <CircularProgress />
               </Box>
             ) : (
-              <ProductCardPreview product={product} />
+              <ProductCardPreview product={product} curPage={curPage} />
             )}
           </Grid>
         ))}

@@ -21,7 +21,7 @@ import { TProductData } from '../../shared/types/store.types.ts';
 import styles from './styles.module.css';
 import { LikeIconButtonEffects, OptionsIconButtonEffects } from './styles.ts';
 import { useState } from 'react';
-import { ProductForm } from '../product-form';
+import { ProductFormHook } from '../product-form-hook';
 
 interface IProductCard {
   product: TProductData;
@@ -157,7 +157,7 @@ export function ProductCardDetailed({ product }: IProductCard) {
             transform: 'translate(-50%, -50%)',
           }}
         >
-          <ProductForm
+          <ProductFormHook
             productInformation={{
               id: product.id,
               title: product.title,

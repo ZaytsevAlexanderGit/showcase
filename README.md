@@ -11,7 +11,8 @@ SPA для отображения "витрины" магазина. Реало�
 - React
 - TypeScript
 - React Router
-- RTK
+- Redux Toolkit
+- React Hook Form
 - Material UI (MUI)
 
 ## Установка

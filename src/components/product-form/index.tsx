@@ -1,6 +1,5 @@
 import { Box, Card, FormLabel, TextField, Typography } from '@mui/material';
 
-import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import {
@@ -145,153 +144,146 @@ export function ProductForm({ productInformation, modalClose }: IProductForm) {
         sx={{
           display: 'flex',
           flexDirection: 'column',
+          gap: '5px',
           width: '100%',
-          gap: 2,
+          '& .MuiInputBase-input': {
+            padding: '5px',
+            textAlign: 'start',
+          },
+          '& .Mui-error': { margin: 0 },
+          input: {
+            padding: '5px',
+            color: 'black',
+          },
         }}
       >
-        <FormControl
+        <FormLabel htmlFor="category">Product Category</FormLabel>
+        <Select
           sx={{
-            '& .MuiInputBase-input': {
-              padding: '5px',
-              textAlign: 'start',
-            },
-            '& .Mui-error': { margin: 0 },
-            display: 'flex',
-            gap: '5px',
-            input: {
-              padding: '5px',
-              color: 'black',
+            padding: 0,
+            margin: 0,
+            color: 'black',
+          }}
+          labelId="category"
+          id="category"
+          value={productData.category}
+          onChange={(event: SelectChangeEvent) => {
+            setCategoryError('');
+            setProductData({
+              ...productData,
+              category: event.target.value,
+            });
+          }}
+          error={categoryError.length > 0}
+        >
+          <MenuItem disabled value={'Choose Product Category'}>
+            Choose Product Category
+          </MenuItem>
+          {allCategories.map((el) => (
+            <MenuItem
+              value={`${el}`}
+              key={el}
+              sx={{ fontSize: '1rem', padding: '4px 4px 4px 20px' }}
+            >
+              {el}
+            </MenuItem>
+          ))}
+        </Select>
+
+        <FormLabel htmlFor="title">Product Name</FormLabel>
+        <TextField
+          value={productData.title}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            if (titleError.length > 0) setTitleError('');
+            setProductData({ ...productData, title: event.target.value });
+          }}
+          id="title"
+          type="text"
+          name="title"
+          placeholder="Product Name"
+          required
+          error={titleError.length > 0}
+          helperText={titleError}
+          variant="outlined"
+        />
+
+        <FormLabel htmlFor="description">Description</FormLabel>
+        <TextField
+          slotProps={{
+            input: { style: { padding: '5px' } },
+            htmlInput: {
+              style: {
+                padding: 0,
+                color: 'black',
+              },
             },
           }}
-        >
-          <FormLabel htmlFor="category">Product Category</FormLabel>
-          <Select
-            sx={{
-              padding: 0,
-              margin: 0,
-              color: 'black',
-            }}
-            labelId="category"
-            id="category"
-            value={productData.category}
-            onChange={(event: SelectChangeEvent) => {
-              setCategoryError('');
-              setProductData({
-                ...productData,
-                category: event.target.value,
-              });
-            }}
-            error={categoryError.length > 0}
-          >
-            <MenuItem disabled value={'Choose Product Category'}>
-              Choose Product Category
-            </MenuItem>
-            {allCategories.map((el) => (
-              <MenuItem
-                value={`${el}`}
-                key={el}
-                sx={{ fontSize: '1rem', padding: '4px 4px 4px 20px' }}
-              >
-                {el}
-              </MenuItem>
-            ))}
-          </Select>
+          value={productData.description}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            if (descriptionError.length > 0) setDescriptionError('');
+            setProductData({
+              ...productData,
+              description: event.target.value,
+            });
+          }}
+          id="description"
+          type="text"
+          name="description"
+          placeholder="Product Description"
+          multiline
+          required
+          variant="outlined"
+          minRows={3}
+          maxRows={3}
+          error={descriptionError.length > 0}
+          helperText={descriptionError}
+        />
 
-          <FormLabel htmlFor="title">Product Name</FormLabel>
-          <TextField
-            value={productData.title}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              if (titleError.length > 0) setTitleError('');
-              setProductData({ ...productData, title: event.target.value });
-            }}
-            id="title"
-            type="text"
-            name="title"
-            placeholder="Product Name"
-            required
-            error={titleError.length > 0}
-            helperText={titleError}
-            variant="outlined"
-          />
-
-          <FormLabel htmlFor="description">Description</FormLabel>
-          <TextField
-            slotProps={{
-              input: { style: { padding: '5px' } },
-              htmlInput: {
-                style: {
-                  padding: 0,
-                  color: 'black',
-                },
-              },
-            }}
-            value={productData.description}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              if (descriptionError.length > 0) setDescriptionError('');
-              setProductData({
-                ...productData,
-                description: event.target.value,
-              });
-            }}
-            id="description"
-            type="text"
-            name="description"
-            placeholder="Product Description"
-            multiline
-            required
-            variant="outlined"
-            minRows={3}
-            maxRows={3}
-            error={descriptionError.length > 0}
-            helperText={descriptionError}
-          />
-
-          <FormLabel htmlFor="price">Price, $</FormLabel>
-          <TextField
-            name="price"
-            value={productData.price}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              if (onlyNumbers(event.target.value)) {
-                if (priceError.length > 0) setPriceError('');
-                if (event.target.value.length === 0) {
-                  setProductData({
-                    ...productData,
-                    price: +event.target.value,
-                  });
-                }
-                setProductData({ ...productData, price: +event.target.value });
+        <FormLabel htmlFor="price">Price, $</FormLabel>
+        <TextField
+          name="price"
+          value={productData.price}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            if (onlyNumbers(event.target.value)) {
+              if (priceError.length > 0) setPriceError('');
+              if (event.target.value.length === 0) {
+                setProductData({
+                  ...productData,
+                  price: +event.target.value,
+                });
               }
-            }}
-            placeholder="Price"
-            type="number"
-            id="price"
-            autoComplete="current-password"
-            required
-            variant="outlined"
-            error={priceError.length > 0}
-            helperText={priceError}
-          />
+              setProductData({ ...productData, price: +event.target.value });
+            }
+          }}
+          placeholder="Price"
+          type="number"
+          id="price"
+          autoComplete="current-password"
+          required
+          variant="outlined"
+          error={priceError.length > 0}
+          helperText={priceError}
+        />
 
-          <FormLabel htmlFor="imageURL">Image URL</FormLabel>
-          <TextField
-            id="imageURL"
-            value={productData.images}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              if (imageError.length > 0) setImageError('');
-              setProductData({
-                ...productData,
-                images: event.target.value,
-              });
-            }}
-            type="text"
-            name="imageURL"
-            placeholder="Image URL( https://*.* )"
-            required
-            variant="outlined"
-            error={imageError.length > 0}
-            helperText={imageError}
-          />
-        </FormControl>
+        <FormLabel htmlFor="imageURL">Image URL</FormLabel>
+        <TextField
+          id="imageURL"
+          value={productData.images}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            if (imageError.length > 0) setImageError('');
+            setProductData({
+              ...productData,
+              images: event.target.value,
+            });
+          }}
+          type="text"
+          name="imageURL"
+          placeholder="Image URL( https://*.* )"
+          required
+          variant="outlined"
+          error={imageError.length > 0}
+          helperText={imageError}
+        />
         <Button type="submit" fullWidth variant="contained">
           {action} Product
         </Button>
