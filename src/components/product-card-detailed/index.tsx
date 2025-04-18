@@ -157,6 +157,7 @@ export function ProductCardDetailed({ product }: IProductCard) {
             transform: 'translate(-50%, -50%)',
           }}
         >
+          <title>Edit Product</title>
           <ProductFormHook
             productInformation={{
               id: product.id,

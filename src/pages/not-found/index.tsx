@@ -11,6 +11,9 @@ export function NotFoundPage() {
   }, []);
 
   return (
-    <Typography variant="h3">There is no page with this address</Typography>
+    <>
+      <title>Not Found</title>
+      <Typography variant="h3">There is no page with this address</Typography>
+    </>
   );
 }

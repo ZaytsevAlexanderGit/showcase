@@ -16,6 +16,7 @@ export function ProductInfoPage() {
 
   return product !== undefined ? (
     <>
+      <title>Product Info</title>
       <IconButton
         sx={{
           position: 'absolute',

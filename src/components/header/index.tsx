@@ -20,7 +20,7 @@ export function Header() {
 
   useEffect(() => {
     dispatch(setFilterSearch(debouncedSearchTerm));
-  }, [debouncedSearchTerm]);
+  }, [dispatch, debouncedSearchTerm]);
 
   return location.pathname === Routes.ALL_PRODUCTS ? (
     <Box
@@ -71,13 +71,13 @@ export function Header() {
           gridArea: 'search',
           margin: 'auto',
           position: 'relative',
-          borderRadius: '10px',
+          borderRadius: '5px',
           display: 'flex',
           flexDirection: 'column',
           inlineSize: { sm: '50vw', xs: '100%' },
           color: 'black1',
           backgroundColor: 'white',
-          boxShadow: '0px 0px 20px black',
+          boxShadow: '0px 0px 2px black',
           '& .MuiInputBase-input': {
             padding: '5px',
             textAlign: 'start',

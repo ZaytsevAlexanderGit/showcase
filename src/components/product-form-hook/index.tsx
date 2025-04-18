@@ -19,7 +19,7 @@ import { nanoid } from 'nanoid';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { SelectElement } from 'react-hook-form-mui';
 import { useEffect } from 'react';
-//
+
 interface IProductForm {
   productInformation: TProductEssential;
   modalClose?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -95,7 +95,7 @@ export function ProductFormHook({
         borderRadius: '5px',
         display: 'flex',
         flexDirection: 'column',
-        inlineSize: '50vw',
+        inlineSize: { xs: '75vw', sm: '62.5vw', lg: '50vw' },
         padding: 2,
         gap: 1,
         color: 'black',

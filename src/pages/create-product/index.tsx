@@ -16,6 +16,7 @@ export function ProductCreatePage({ productInformation }: IProductCreatePage) {
 
   return (
     <>
+      <title>Add Product</title>
       <IconButton
         sx={{
           position: 'absolute',

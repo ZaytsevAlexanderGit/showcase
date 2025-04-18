@@ -44,6 +44,7 @@ export function ProductsPage() {
 
   return (
     <>
+      <title>Products</title>
       <Grid spacing={2} container>
         <ProductsList dataForShow={dataDoubleShow} curPage={curPage} />
       </Grid>
